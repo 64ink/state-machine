@@ -65,6 +65,17 @@ the best practice as it does not enforce the proper work flow.
 `AfterStateChangedListener` | Callback listener for when a state change *has* already happened.  It is safe to make further state changes within this listener.  This is ideal for performing additional events when a state change triggered it.
 `StateMachineException` | Runtime exception that can generally only occur on a code defect, or by trying to change state from within an `OnStateChangedListener`.
     
+### Simplifing Logic
+
+#### Reduce, reduce, reduce
+One of the biggest challenges when starting to use a statemachine is reducing the state machine to it most essential parts.
+ Don't think of a state machine as a subsitute for code because it is not.  Think of state machine like a process flow of an online order: ORDERED, PAYMENT_PENDING, PAID, SHIPPED, COMPLETED.  Behind the scenes, the code is doing all kinds of validating, payment processing, and so on.  But the only thing important from a state machine perspective is that the big stuff happens in order.  If something goes wrong, there should be an *event* that fires taking it to the correct next *state*.
+
+#### Doing away with conditionals
+
+Another common issue when creating a new state machine is that the source is a flow chart.  In a state machine, *events* just happen, triggered by something else like user input or reaching a *state*.  The small decisions like which event to generate are best just left in the code.   The chart below shows some of the differences between a state machine and a flow chart.
+
+![Flow Chart and State Machine Mappings](flow_state_equiv.png)
 
 
 ## Examples
