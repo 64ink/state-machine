@@ -16,6 +16,8 @@
 package com.nofacepress.statemachine;
 
 import com.nofacepress.statemachine.exceptions.StateMachineException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StateMachineInstance<S, E, C> {
 
@@ -23,6 +25,8 @@ public class StateMachineInstance<S, E, C> {
 	private StateType<S, E, C> currentState;
 	private boolean changeInProcess = false;
 	private C context;
+	private Map<String, Object> properties = null;
+	
 
 	public StateMachineInstance(StateMachineGraph<S, E, C> graph, C context) {
 		this.stateMachineGraph = graph;
@@ -106,6 +110,23 @@ public class StateMachineInstance<S, E, C> {
 
 	public void setContext(C context) {
 		this.context = context;
+	}
+
+	public void setProperty(String key, Object value) {
+		if (value == null) {
+			if (properties != null) {
+				properties.remove(key);
+			}
+		} else {
+			if (properties == null) {
+				properties = new HashMap<String, Object>();
+			}
+			properties.put(key, value);
+		}
+	}
+
+	public Object getProperty(String key) {
+		return (properties == null)  ? null : properties.get(key);
 	}
 
 }
