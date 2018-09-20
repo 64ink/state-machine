@@ -57,13 +57,12 @@ public class ListenerManager<S, E, C> {
 	 * Calls all AfterStateChangedListener listeners.
 	 * 
 	 * @param instance the instance of the state machine.
-	 * @param from     the original state.
-	 * @param to       the new state.
+	 * @param source   the original state.
+	 * @param target   the new state.
 	 * @param event    the event that cause the transition.
 	 */
 	public void callAfterStateChangedListeners(StateMachineInstance<S, E, C> instance, StateType<S, E, C> source,
-			StateType<S, E, C> target,
-			E event) {
+			StateType<S, E, C> target, E event) {
 		// iterating in a way to allow removal
 		for (Iterator<AfterStateChangedListener<S, E, C>> iterator = afterStateChangedListeners.iterator(); iterator
 				.hasNext();) {
@@ -77,8 +76,8 @@ public class ListenerManager<S, E, C> {
 	 * Calls all OnStateChangedListener listeners.
 	 * 
 	 * @param instance the instance of the state machine.
-	 * @param from     the original state.
-	 * @param to       the new state.
+	 * @param source   the original state.
+	 * @param target   the new state.
 	 * @param event    the event that cause the transition.
 	 */
 	public void callOnStateChangedListeners(StateMachineInstance<S, E, C> instance, StateType<S, E, C> source,
