@@ -64,7 +64,10 @@ the best practice as it does not enforce the proper work flow.
  `OnStateChangedListener` | Callback listener for when a state *is* changing.  Further state changes are not allowed from within this listener.  This is ideal for persisting state changes to a database and ensure that it happens before any `AfterStateChangedListener`'s.  The state change limitation exists because it creates use cases ripe code defects and excessive complexity. Use `AfterStateChangedListener` for cases where the state may change within.
 `AfterStateChangedListener` | Callback listener for when a state change *has* already happened.  It is safe to make further state changes within this listener.  This is ideal for performing additional events when a state change triggered it.
 `StateMachineException` | Runtime exception that can generally only occur on a code defect, or by trying to change state from within an `OnStateChangedListener`.
-    
+`SCXMLManager` | Provides an optional method to both load and save a `StateMachineGraph` via the SCXML format.
+`PlantUmlManager` | Provides an optional method to save and visualize a `StateMachineGraph` via PlantUml format.
+
+
 ### Simplifing Logic
 
 #### Reduce, reduce, reduce
@@ -254,4 +257,14 @@ StateMachineGraph<Location, Action, Person> graph = build
 
 ```
 
+#### Passing extra data in a state machine instance
 
+The `StateMachineInstance` provides `getProperty()` and `setProperty()` methods to include data in addition to the *context*.  This is useful for sharing information between listeners or just bundling extra data with the instance.
+
+### SCXML Importing and Exporting
+
+[SCXML](https://en.wikipedia.org/wiki/SCXML) is a current standard for describing state machines in XML.  The `SCXMLManager` class can be used to both load and save state machine graphs using the XML format.
+
+### PlanetUml Exporting
+
+[PlantUML](http://plantuml.com/) state charts art based on a plain text file. The `PlantUmlManager` class can be used to save state machine graphs for use with PlantUML.
