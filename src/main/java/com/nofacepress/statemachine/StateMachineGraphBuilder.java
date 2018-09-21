@@ -159,6 +159,9 @@ public class StateMachineGraphBuilder {
 	/**
 	 * Static method to create a type appropriate builder.
 	 * 
+	 * @param <S> The state class
+	 * @param <E> The event class
+	 * @param <C> The context class
 	 * @return the builder
 	 */
 	public static <S, E, C> StateMachineGraphBuild<S, E, C> builder() {

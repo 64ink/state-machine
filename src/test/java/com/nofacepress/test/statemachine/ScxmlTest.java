@@ -27,7 +27,6 @@ import org.junit.Test;
 
 import com.nofacepress.statemachine.StateMachineGraph;
 import com.nofacepress.statemachine.StateType;
-import com.nofacepress.statemachine.plantxml.PlantUmlManager;
 import com.nofacepress.statemachine.scxml.SCXMLManager;
 
 public class ScxmlTest {
@@ -115,7 +114,7 @@ public class ScxmlTest {
 		StateMachineGraph<String, String, String> graph = SCXMLManager.loadStringGraph(stream);
 
 		validateStringCase(graph);
-		
+
 	}
 
 	@Test
