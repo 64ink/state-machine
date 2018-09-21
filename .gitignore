@@ -26,3 +26,4 @@ hs_err_pid*
 /.project
 /target/
 /.README.md.html
+/scml.test.xml
