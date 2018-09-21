@@ -27,8 +27,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.xml.stream.XMLStreamException;
-
 import com.nofacepress.statemachine.StateMachineGraph;
 import com.nofacepress.statemachine.StateType;
 import com.nofacepress.statemachine.typeconverters.EnumToStringConverter;
@@ -64,11 +62,10 @@ public class PlantUmlManager {
 	 * @param graph    the graph to save
 	 * @param title    the title to put on the chart, null is ok for no title.
 	 * @param filename the output file name
-	 * @throws XMLStreamException on XML error
 	 * @throws IOException        on IO error
 	 */
 	public static <C> void saveStringGraph(StateMachineGraph<String, String, C> graph, String title, String filename)
-			throws XMLStreamException, IOException {
+			throws IOException {
 		ToStringConverter<String> conv = new StringToStringConverter();
 		saveGraph(graph, title, filename, conv, conv);
 	}
@@ -81,11 +78,10 @@ public class PlantUmlManager {
 	 * @param graph  the graph to save
 	 * @param title  the title to put on the chart, null is ok for no title.
 	 * @param writer the output to write to
-	 * @throws XMLStreamException on XML error
 	 * @throws IOException        on IO error
 	 */
 	public static <C> void saveStringGraph(StateMachineGraph<String, String, C> graph, String title, Writer writer)
-			throws XMLStreamException, IOException {
+			throws IOException {
 		ToStringConverter<String> conv = new StringToStringConverter();
 		saveGraph(graph, title, writer, conv, conv);
 	}
@@ -100,12 +96,11 @@ public class PlantUmlManager {
 	 * @param graph    the graph to save
 	 * @param title    the title to put on the chart, null is ok for no title.
 	 * @param filename the output file name
-	 * @throws XMLStreamException on XML error
 	 * @throws IOException        on IO error
 	 */
 	public static <S extends Enum<S>, E extends Enum<E>, C> void saveEnumGraph(StateMachineGraph<S, E, C> graph,
 			String title,
-			String filename) throws XMLStreamException, IOException {
+			String filename) throws IOException {
 		ToStringConverter<S> Sconv = new EnumToStringConverter<S>();
 		ToStringConverter<E> Econv = new EnumToStringConverter<E>();
 		saveGraph(graph, title, filename, Sconv, Econv);
@@ -121,12 +116,11 @@ public class PlantUmlManager {
 	 * @param graph  the graph to save
 	 * @param title  the title to put on the chart, null is ok for no title.
 	 * @param writer the output to write to
-	 * @throws XMLStreamException on XML error
 	 * @throws IOException        on IO error
 	 */
 	public static <S extends Enum<S>, E extends Enum<E>, C> void saveEnumGraph(StateMachineGraph<S, E, C> graph,
 			String title,
-			Writer writer) throws XMLStreamException, IOException {
+			Writer writer) throws IOException {
 		ToStringConverter<S> Sconv = new EnumToStringConverter<S>();
 		ToStringConverter<E> Econv = new EnumToStringConverter<E>();
 		saveGraph(graph, title, writer, Sconv, Econv);
