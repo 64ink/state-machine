@@ -194,8 +194,8 @@ class GoToBedListener implements AfterStateChangedListener<Location, Action, Per
 	@Override
 	public void afterStateChanged(
 			StateMachineInstance<Location, Action, Person> instance,
-			StateType<Location, Action, Person> from,
-			StateType<Location, Action, Person> to,
+			StateType<Location, Action, Person> source,
+			StateType<Location, Action, Person> target,
 			Action event
 	) {
 			Person who = instance.getContext();
@@ -206,7 +206,7 @@ class GoToBedListener implements AfterStateChangedListener<Location, Action, Per
 }
 
 // Add it to an existing state graph
-graph.getStateInfo(Location.HOME).getListenerManager().addListener(new GoToBedListener());
+graph.getStateType(Location.HOME).getListenerManager().addListener(new GoToBedListener());
 
 // OR: add it while using the builder	
 StateMachineGraph<Location, Action, Person> graph = build
@@ -230,14 +230,14 @@ class SaveStateListener implements OnStateChangedListener<Location, Action, Pers
 	@Override
 	public void afterStateChanged(
 			StateMachineInstance<Location, Action, Person> instance,
-			StateType<Location, Action, Person> from,
-			StateType<Location, Action, Person> to,
+			StateType<Location, Action, Person> source,
+			StateType<Location, Action, Person> target,
 			Action event
 	) {
 			Person who = instance.getContext();
 
 			// save this change in your database
- 	      System.out.println("Who: " + who.getLastName() + "From:" + from.getId() + " To:" + to.getId() + " Event:" + event);
+ 	      System.out.println("Who: " + who.getLastName() + "From:" + source.getId() + " To:" + target.getId() + " Event:" + event);
 	}
 }
 

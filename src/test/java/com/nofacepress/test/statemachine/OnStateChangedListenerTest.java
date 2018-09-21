@@ -32,9 +32,7 @@ import com.nofacepress.statemachine.StateMachineGraphBuilder.StateMachineGraphBu
 import com.nofacepress.statemachine.StateMachineInstance;
 import com.nofacepress.statemachine.StateType;
 import com.nofacepress.statemachine.exceptions.StateMachineException;
-import com.nofacepress.statemachine.listener.AfterStateChangedListener;
 import com.nofacepress.statemachine.listener.OnStateChangedListener;
-import com.nofacepress.test.statemachine.AfterStateChangedListenerTest.FireListener;
 
 public class OnStateChangedListenerTest {
 
@@ -55,11 +53,11 @@ public class OnStateChangedListenerTest {
 				graph, "Context");
 
 		assertFalse(instance.fireEvent(TestEvents.EVENT_2));
-		verify(listener, times(0)).onStateChanged(instance, graph.getStateInfo(TestStates.STATE_1),
-				graph.getStateInfo(TestStates.STATE_2), TestEvents.EVENT_1);
+		verify(listener, times(0)).onStateChanged(instance, graph.getStateType(TestStates.STATE_1),
+				graph.getStateType(TestStates.STATE_2), TestEvents.EVENT_1);
 		assertTrue(instance.fireEvent(TestEvents.EVENT_1));
-		verify(listener, times(1)).onStateChanged(instance, graph.getStateInfo(TestStates.STATE_1),
-				graph.getStateInfo(TestStates.STATE_2), TestEvents.EVENT_1);
+		verify(listener, times(1)).onStateChanged(instance, graph.getStateType(TestStates.STATE_1),
+				graph.getStateType(TestStates.STATE_2), TestEvents.EVENT_1);
 
 	}
 
@@ -80,8 +78,8 @@ public class OnStateChangedListenerTest {
 				graph, "Context");
 
 		assertTrue(instance.fireEvent(TestEvents.EVENT_1));
-		verify(listener, times(1)).onStateChanged(instance, graph.getStateInfo(TestStates.STATE_1),
-				graph.getStateInfo(TestStates.STATE_1), TestEvents.EVENT_1);
+		verify(listener, times(1)).onStateChanged(instance, graph.getStateType(TestStates.STATE_1),
+				graph.getStateType(TestStates.STATE_1), TestEvents.EVENT_1);
 
 	}
 
@@ -105,15 +103,15 @@ public class OnStateChangedListenerTest {
 				graph, "Context");
 
 		assertFalse(instance.fireEvent(TestEvents.EVENT_2));
-		verify(listener1, times(0)).onStateChanged(instance, graph.getStateInfo(TestStates.STATE_1),
-				graph.getStateInfo(TestStates.STATE_2), TestEvents.EVENT_1);
-		verify(listener2, times(0)).onStateChanged(instance, graph.getStateInfo(TestStates.STATE_1),
-				graph.getStateInfo(TestStates.STATE_2), TestEvents.EVENT_1);
+		verify(listener1, times(0)).onStateChanged(instance, graph.getStateType(TestStates.STATE_1),
+				graph.getStateType(TestStates.STATE_2), TestEvents.EVENT_1);
+		verify(listener2, times(0)).onStateChanged(instance, graph.getStateType(TestStates.STATE_1),
+				graph.getStateType(TestStates.STATE_2), TestEvents.EVENT_1);
 		assertTrue(instance.fireEvent(TestEvents.EVENT_1));
-		verify(listener2, times(1)).onStateChanged(instance, graph.getStateInfo(TestStates.STATE_1),
-				graph.getStateInfo(TestStates.STATE_2), TestEvents.EVENT_1);
-		verify(listener1, times(0)).onStateChanged(instance, graph.getStateInfo(TestStates.STATE_1),
-				graph.getStateInfo(TestStates.STATE_2), TestEvents.EVENT_1);
+		verify(listener2, times(1)).onStateChanged(instance, graph.getStateType(TestStates.STATE_1),
+				graph.getStateType(TestStates.STATE_2), TestEvents.EVENT_1);
+		verify(listener1, times(0)).onStateChanged(instance, graph.getStateType(TestStates.STATE_1),
+				graph.getStateType(TestStates.STATE_2), TestEvents.EVENT_1);
 
 	}
 

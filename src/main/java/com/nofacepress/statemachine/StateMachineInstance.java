@@ -26,17 +26,16 @@ public class StateMachineInstance<S, E, C> {
 	private boolean changeInProcess = false;
 	private C context;
 	private Map<String, Object> properties = null;
-	
 
 	public StateMachineInstance(StateMachineGraph<S, E, C> graph, C context) {
 		this.stateMachineGraph = graph;
-		this.currentState = graph.getStateInfo(graph.getInitialState());
+		this.currentState = graph.getStateType(graph.getInitialState());
 		this.setContext(context);
 	}
 
 	public StateMachineInstance(StateMachineGraph<S, E, C> graph, S initialState, C context) {
 		this.stateMachineGraph = graph;
-		this.currentState = graph.getStateInfo(initialState);
+		this.currentState = graph.getStateType(initialState);
 		this.setContext(context);
 	}
 
@@ -86,7 +85,7 @@ public class StateMachineInstance<S, E, C> {
 
 	public void forceStateChange(S state, E event, boolean notifyListeners) throws StateMachineException {
 
-		StateType<S, E, C> target = stateMachineGraph.getStateInfo(state);
+		StateType<S, E, C> target = stateMachineGraph.getStateType(state);
 
 		if (target == null) {
 			throw new StateMachineException("Invalid state " + String.valueOf(state));
@@ -126,7 +125,7 @@ public class StateMachineInstance<S, E, C> {
 	}
 
 	public Object getProperty(String key) {
-		return (properties == null)  ? null : properties.get(key);
+		return (properties == null) ? null : properties.get(key);
 	}
 
 }

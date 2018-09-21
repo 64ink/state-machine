@@ -21,7 +21,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ StateMachineGraphBuilderTest.class, StateMachineGraphTest.class, OnStateChangedListenerTest.class,
-		AfterStateChangedListenerTest.class })
+		AfterStateChangedListenerTest.class, ScxmlTest.class })
 public class AllTests {
 
 }

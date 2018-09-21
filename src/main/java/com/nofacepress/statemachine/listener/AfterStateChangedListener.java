@@ -33,11 +33,11 @@ public interface AfterStateChangedListener<S, E, C> {
 	 * here.
 	 * 
 	 * @param instance the instance of the state machine.
-	 * @param from     the original state.
-	 * @param to       the new state.
+	 * @param source     the original state.
+	 * @param target       the new state.
 	 * @param event    the event that cause the transition.
 	 */
-	void afterStateChanged(StateMachineInstance<S, E, C> instance, StateType<S, E, C> from, StateType<S, E, C> to,
+	void afterStateChanged(StateMachineInstance<S, E, C> instance, StateType<S, E, C> source, StateType<S, E, C> target,
 			E event);
 
 }

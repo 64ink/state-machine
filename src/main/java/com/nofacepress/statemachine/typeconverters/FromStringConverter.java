@@ -13,28 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.nofacepress.statemachine;
+package com.nofacepress.statemachine.typeconverters;
 
-import java.util.Collection;
+/**
+ * Trivial interface for conversion to something "from" a String.
+ * 
+ * @param <S> the class being converted
+ */
+public interface FromStringConverter<S> {
 
-import com.nofacepress.statemachine.listener.ListenerManager;
-
-public interface StateMachineGraph<S, E, C> {
-
-	StateType<S, E, C> addState(S state);
-
-	void addTransition(S fromState, S toState, E event);
-
-	StateMachineGraph<S, E, C> dup(boolean includeListeners);
-
-	S getInitialState();
-
-	ListenerManager<S, E, C> getListenerManager();
-
-	StateType<S, E, C> getStateType(S state);
-
-	Collection<? extends StateType<S, E, C>> getStates();
-
-	void setInitialState(S state);
+	/**
+	 * Converts from a String to something.
+	 * 
+	 * @param text input text
+	 * @return output thing
+	 */
+	S convertFromString(String text);
 
 }

@@ -34,11 +34,11 @@ public interface OnStateChangedListener<S, E, C> {
 	 * AfterStateChangedListener. This is an excellent place to persist state data.
 	 * 
 	 * @param instance the instance of the state machine.
-	 * @param from     the original state.
-	 * @param to       the new state.
+	 * @param source     the original state.
+	 * @param target       the new state.
 	 * @param event    the event that cause the transition.
 	 */
-	void onStateChanged(StateMachineInstance<S, E, C> instance, StateType<S, E, C> from, StateType<S, E, C> to,
+	void onStateChanged(StateMachineInstance<S, E, C> instance, StateType<S, E, C> source, StateType<S, E, C> target,
 			E event);
 
 }

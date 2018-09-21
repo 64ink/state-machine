@@ -13,28 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.nofacepress.statemachine;
+package com.nofacepress.statemachine.typeconverters;
 
-import java.util.Collection;
+/**
+ * Trivial interface to convert an enum type to a String
+ * 
+ * @param <S> the thing to convert
+ */
+public class EnumToStringConverter<S extends Enum<S>> implements ToStringConverter<S> {
 
-import com.nofacepress.statemachine.listener.ListenerManager;
-
-public interface StateMachineGraph<S, E, C> {
-
-	StateType<S, E, C> addState(S state);
-
-	void addTransition(S fromState, S toState, E event);
-
-	StateMachineGraph<S, E, C> dup(boolean includeListeners);
-
-	S getInitialState();
-
-	ListenerManager<S, E, C> getListenerManager();
-
-	StateType<S, E, C> getStateType(S state);
-
-	Collection<? extends StateType<S, E, C>> getStates();
-
-	void setInitialState(S state);
+	@Override
+	public String convertToString(S obj) {
+		return obj.name();
+	}
 
 }

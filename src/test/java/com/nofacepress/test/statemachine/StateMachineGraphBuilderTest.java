@@ -58,28 +58,28 @@ public class StateMachineGraphBuilderTest {
 
 		StateType<TestStates, TestEvents, String> state;
 
-		state = graph.getStateInfo(TestStates.STATE_1);
+		state = graph.getStateType(TestStates.STATE_1);
 		assertNotNull(state);
 		assertFalse(state.isEnd());
 		assertEquals(state.getTransitions().size(), 1);
 		assertNotNull(state.getTransition(TestEvents.EVENT_1));
 		assertEquals(state.getTransition(TestEvents.EVENT_1).getId(), TestStates.STATE_2);
 
-		state = graph.getStateInfo(TestStates.STATE_2);
+		state = graph.getStateType(TestStates.STATE_2);
 		assertNotNull(state);
 		assertFalse(state.isEnd());
 		assertEquals(state.getTransitions().size(), 1);
 		assertNotNull(state.getTransition(TestEvents.EVENT_2));
 		assertEquals(state.getTransition(TestEvents.EVENT_2).getId(), TestStates.STATE_3);
 
-		state = graph.getStateInfo(TestStates.STATE_3);
+		state = graph.getStateType(TestStates.STATE_3);
 		assertNotNull(state);
 		assertFalse(state.isEnd());
 		assertEquals(state.getTransitions().size(), 1);
 		assertNotNull(state.getTransition(TestEvents.EVENT_3));
 		assertEquals(state.getTransition(TestEvents.EVENT_3).getId(), TestStates.STATE_4);
 
-		state = graph.getStateInfo(TestStates.STATE_4);
+		state = graph.getStateType(TestStates.STATE_4);
 		assertNotNull(state);
 		assertTrue(state.isEnd());
 		assertEquals(state.getTransitions().size(), 0);
@@ -109,7 +109,7 @@ public class StateMachineGraphBuilderTest {
 
 		StateType<TestStates, TestEvents, String> state;
 
-		state = graph.getStateInfo(TestStates.STATE_1);
+		state = graph.getStateType(TestStates.STATE_1);
 		assertNotNull(state);
 		assertFalse(state.isEnd());
 		assertEquals(state.getTransitions().size(), 3);

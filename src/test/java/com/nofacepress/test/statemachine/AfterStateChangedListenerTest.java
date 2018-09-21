@@ -53,11 +53,11 @@ public class AfterStateChangedListenerTest {
 				graph, "Context");
 
 		assertFalse(instance.fireEvent(TestEvents.EVENT_2));
-		verify(listener, times(0)).afterStateChanged(instance, graph.getStateInfo(TestStates.STATE_1),
-				graph.getStateInfo(TestStates.STATE_2), TestEvents.EVENT_1);
+		verify(listener, times(0)).afterStateChanged(instance, graph.getStateType(TestStates.STATE_1),
+				graph.getStateType(TestStates.STATE_2), TestEvents.EVENT_1);
 		assertTrue(instance.fireEvent(TestEvents.EVENT_1));
-		verify(listener, times(1)).afterStateChanged(instance, graph.getStateInfo(TestStates.STATE_1),
-				graph.getStateInfo(TestStates.STATE_2), TestEvents.EVENT_1);
+		verify(listener, times(1)).afterStateChanged(instance, graph.getStateType(TestStates.STATE_1),
+				graph.getStateType(TestStates.STATE_2), TestEvents.EVENT_1);
 
 	}
 
@@ -79,8 +79,8 @@ public class AfterStateChangedListenerTest {
 				graph, "Context");
 
 		assertTrue(instance.fireEvent(TestEvents.EVENT_1));
-		verify(listener, times(1)).afterStateChanged(instance, graph.getStateInfo(TestStates.STATE_1),
-				graph.getStateInfo(TestStates.STATE_1), TestEvents.EVENT_1);
+		verify(listener, times(1)).afterStateChanged(instance, graph.getStateType(TestStates.STATE_1),
+				graph.getStateType(TestStates.STATE_1), TestEvents.EVENT_1);
 
 	}
 
@@ -106,15 +106,15 @@ public class AfterStateChangedListenerTest {
 				graph, "Context");
 
 		assertFalse(instance.fireEvent(TestEvents.EVENT_2));
-		verify(listener1, times(0)).afterStateChanged(instance, graph.getStateInfo(TestStates.STATE_1),
-				graph.getStateInfo(TestStates.STATE_2), TestEvents.EVENT_1);
-		verify(listener2, times(0)).afterStateChanged(instance, graph.getStateInfo(TestStates.STATE_1),
-				graph.getStateInfo(TestStates.STATE_2), TestEvents.EVENT_1);
+		verify(listener1, times(0)).afterStateChanged(instance, graph.getStateType(TestStates.STATE_1),
+				graph.getStateType(TestStates.STATE_2), TestEvents.EVENT_1);
+		verify(listener2, times(0)).afterStateChanged(instance, graph.getStateType(TestStates.STATE_1),
+				graph.getStateType(TestStates.STATE_2), TestEvents.EVENT_1);
 		assertTrue(instance.fireEvent(TestEvents.EVENT_1));
-		verify(listener2, times(1)).afterStateChanged(instance, graph.getStateInfo(TestStates.STATE_1),
-				graph.getStateInfo(TestStates.STATE_2), TestEvents.EVENT_1);
-		verify(listener1, times(0)).afterStateChanged(instance, graph.getStateInfo(TestStates.STATE_1),
-				graph.getStateInfo(TestStates.STATE_2), TestEvents.EVENT_1);
+		verify(listener2, times(1)).afterStateChanged(instance, graph.getStateType(TestStates.STATE_1),
+				graph.getStateType(TestStates.STATE_2), TestEvents.EVENT_1);
+		verify(listener1, times(0)).afterStateChanged(instance, graph.getStateType(TestStates.STATE_1),
+				graph.getStateType(TestStates.STATE_2), TestEvents.EVENT_1);
 
 	}
 
