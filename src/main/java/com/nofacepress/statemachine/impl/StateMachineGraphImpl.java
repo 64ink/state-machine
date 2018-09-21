@@ -36,9 +36,9 @@ public class StateMachineGraphImpl<S, E, C> implements StateMachineGraph<S, E, C
 	}
 
 	@Override
-	public void addTransition(S fromState, S toState, E event) {
-		StateTypeImpl<S, E, C> source = getOrCreateState(fromState);
-		StateTypeImpl<S, E, C> target = getOrCreateState(toState);
+	public void addTransition(S sourceState, S targetState, E event) {
+		StateTypeImpl<S, E, C> source = getOrCreateState(sourceState);
+		StateTypeImpl<S, E, C> target = getOrCreateState(targetState);
 		source.addTransition(target, event);
 	}
 

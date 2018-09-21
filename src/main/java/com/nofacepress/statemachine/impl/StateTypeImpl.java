@@ -46,10 +46,6 @@ class StateTypeImpl<S, E, C> implements StateType<S, E, C> {
 		return id;
 	}
 
-	StateTypeImpl<S, E, C> getInternalTransition(E event) {
-		return transitionMap.get(event);
-	}
-
 	@Override
 	public ListenerManager<S, E, C> getListenerManager() {
 		return listenerManager;

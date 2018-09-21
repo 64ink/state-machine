@@ -32,7 +32,7 @@ Build status:[![build_status](https://travis-ci.org/nofacepress/state-machine.sv
 <dependency>
   <groupId>com.nofacepress</groupId>
   <artifactId>state-machine</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
 </dependency>
 ```
 

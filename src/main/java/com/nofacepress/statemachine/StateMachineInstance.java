@@ -19,6 +19,13 @@ import com.nofacepress.statemachine.exceptions.StateMachineException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class representing an context related instance of a state machine.
+ *
+ * @param <S> The state class
+ * @param <E> The event class
+ * @param <C> The context class
+ */
 public class StateMachineInstance<S, E, C> {
 
 	private final StateMachineGraph<S, E, C> stateMachineGraph;
@@ -27,12 +34,25 @@ public class StateMachineInstance<S, E, C> {
 	private C context;
 	private Map<String, Object> properties = null;
 
+	/**
+	 * Constructor using default initial state from graph configuration.
+	 * 
+	 * @param graph   model to use
+	 * @param context the context associated with this instance
+	 */
 	public StateMachineInstance(StateMachineGraph<S, E, C> graph, C context) {
 		this.stateMachineGraph = graph;
 		this.currentState = graph.getStateType(graph.getInitialState());
 		this.setContext(context);
 	}
 
+	/**
+	 * Constructor with a specific initial state
+	 * 
+	 * @param graph        model to use
+	 * @param initialState the initial state
+	 * @param context      the context associated with this instance
+	 */
 	public StateMachineInstance(StateMachineGraph<S, E, C> graph, S initialState, C context) {
 		this.stateMachineGraph = graph;
 		this.currentState = graph.getStateType(initialState);
@@ -73,6 +93,14 @@ public class StateMachineInstance<S, E, C> {
 		return true;
 	}
 
+	/**
+	 * Fires an event to cause a state change. This is the primary method.
+	 * 
+	 * @param event the event to fire
+	 * @return true of event was valid, false otherwise
+	 * @throws StateMachineException if called from an OnStateChangeListener or if a
+	 *                               listener through an exception.
+	 */
 	public boolean fireEvent(E event) throws StateMachineException {
 
 		StateType<S, E, C> target = currentState.getTransition(event);
@@ -83,6 +111,17 @@ public class StateMachineInstance<S, E, C> {
 		return changeState(target, event, true);
 	}
 
+	/**
+	 * Forces a state change. Normally fireEvent() should be used to enforce proper
+	 * work flow.
+	 * 
+	 * @param state           the new state
+	 * @param event           the event to pass to notified listeners, may be null
+	 * @param notifyListeners if true listeners are notified like a normal
+	 *                        transition, false otherwise
+	 * @throws StateMachineException if called from an OnStateChangeListener or if a
+	 *                               listener through an exception.
+	 */
 	public void forceStateChange(S state, E event, boolean notifyListeners) throws StateMachineException {
 
 		StateType<S, E, C> target = stateMachineGraph.getStateType(state);
@@ -95,22 +134,51 @@ public class StateMachineInstance<S, E, C> {
 
 	}
 
+	/**
+	 * Returns the context associated with this state machine instance.
+	 * 
+	 * @return the associated context
+	 */
 	public C getContext() {
 		return context;
 	}
 
+	/**
+	 * Returns the current state as a StateType.
+	 * 
+	 * @return the current StateType
+	 */
 	public StateType<S, E, C> getCurrentState() {
 		return currentState;
 	}
 
+	/**
+	 * Returns the associated StateMachineGraph
+	 * 
+	 * @return a StateMachineGraph
+	 */
 	public StateMachineGraph<S, E, C> getStateMachineGraph() {
 		return stateMachineGraph;
 	}
 
+	/**
+	 * Sets the associated context.
+	 * 
+	 * @param context the context
+	 */
 	public void setContext(C context) {
 		this.context = context;
 	}
 
+	/**
+	 * Adds an application defined property to the instance. Used to bundle other
+	 * arbitrary data to the instance.
+	 * 
+	 * Passing value=null will remove the property.
+	 * 
+	 * @param key   the property key
+	 * @param value the property value
+	 */
 	public void setProperty(String key, Object value) {
 		if (value == null) {
 			if (properties != null) {
@@ -124,6 +192,13 @@ public class StateMachineInstance<S, E, C> {
 		}
 	}
 
+	/**
+	 * Returns an application defined property from the instance. Properties are
+	 * added and removed with setPropery().
+	 * 
+	 * @param key the property key
+	 * @return the property value or null if not found
+	 */
 	public Object getProperty(String key) {
 		return (properties == null) ? null : properties.get(key);
 	}
