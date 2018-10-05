@@ -68,7 +68,7 @@ the best practice as it does not enforce the proper work flow.
 `PlantUmlManager` | Provides an optional method to save and visualize a `StateMachineGraph` via PlantUml format.
 
 
-### Simplifing Logic
+### Simplifying Logic
 
 #### Reduce, reduce, reduce
 
