@@ -27,6 +27,7 @@ import org.junit.Test;
 
 import com.nofacepress.statemachine.StateMachineGraph;
 import com.nofacepress.statemachine.StateType;
+import com.nofacepress.statemachine.lucidchart.LucidChartManager;
 import com.nofacepress.statemachine.scxml.SCXMLManager;
 
 public class ScxmlTest {
@@ -131,6 +132,8 @@ public class ScxmlTest {
 
 		validateStringCase(graph);
 
+		LucidChartManager chart = new LucidChartManager();
+		chart.saveStringGraph(graph, "Test Chart", "lucidchart.csv");;
 	}
 
 	public void validateStringCase(StateMachineGraph<String, String, String> graph) {

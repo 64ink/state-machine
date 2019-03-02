@@ -32,7 +32,7 @@ Build status:[![build_status](https://travis-ci.org/nofacepress/state-machine.sv
 <dependency>
   <groupId>com.nofacepress</groupId>
   <artifactId>state-machine</artifactId>
-  <version>0.2.0</version>
+  <version>0.2.2</version>
 </dependency>
 ```
 
@@ -66,6 +66,7 @@ the best practice as it does not enforce the proper work flow.
 `StateMachineException` | Runtime exception that can generally only occur on a code defect, or by trying to change state from within an `OnStateChangedListener`.
 `SCXMLManager` | Provides an optional method to both load and save a `StateMachineGraph` via the SCXML format.
 `PlantUmlManager` | Provides an optional method to save and visualize a `StateMachineGraph` via PlantUml format.
+`PlantUmlManager` | Provides an optional method to save and visualize a `StateMachineGraph` via LucidChart format.
 
 
 ### Simplifying Logic
