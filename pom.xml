@@ -29,7 +29,8 @@
 		<repository>
 			<id>ossrh</id>
 			<name>Release Repository</name>
-			<url>https://oss.sonatype.org/content/repositories/releases/</url>
+			<!-- <url>https://oss.sonatype.org/content/repositories/releases/</url> -->
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 		<snapshotRepository>
 			<id>ossrh</id>
@@ -40,7 +41,7 @@
 		<developer>
 			<id>sunsetbrew</id>
 			<name>Thomas Davis</name>
-			<email>nofacepress at gmail.com</email>
+			<email>nofacepress at nofacepress.com</email>
 			<organization>No Face Press, LLC</organization>
 			<organizationUrl>http://nofacepress.com</organizationUrl>
 			<roles>
